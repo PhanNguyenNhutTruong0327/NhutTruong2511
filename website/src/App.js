@@ -1,22 +1,36 @@
 
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RouterSite from "./router";
 import LayoutSite from "./layouts/LayoutSite";
 import '../src/assets/sass/app.scss';
+import LayoutAdmin from "./layouts/LayoutAdmin";
 
 
 function App() {
 
   return (
-    <Routes style={{ height: '100vh', overflowY: 'auto' }}>
-      <Route path='/' element={<LayoutSite />}>
-        {RouterSite.RouterPublic.map(function (route, index) {
-          const Page = route.component;
-          return <Route key={index} path={route.path} element={<Page />} />
-        })}
-      </Route>
-    </Routes>
+      <Routes>
+        <Route path="/" element={<LayoutSite />}>
+          {RouterSite.RouterPublic.map(function (router, index) {
+            const Page = router.component;
+            return (
+              <Route key={index} path={router.path} element={<Page />} />
+            )
+          })
+
+          }
+        </Route>
+        <Route path="/admin" element={<LayoutAdmin />}>
+          {RouterSite.RouterPrivate.map(function (router, index) {
+            const Page = router.component;
+            return (
+              <Route key={index} path={router.path} element={<Page />} />
+            )
+          })
+          }
+        </Route>
+      </Routes>
   );
 }
 

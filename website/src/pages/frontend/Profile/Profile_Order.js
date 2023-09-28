@@ -21,13 +21,13 @@ function Profile() {
                                 <Link class="list-group-item" to="/pages/profile/order-profile"> Đơn hàng </Link>
                                 <Link class="list-group-item" to="/pages/profile/setting-profile"> Cài đặt </Link>
                             </nav>
-                        </aside> {/*-- col.// -*/}
+                        </aside>
                         <main className="col-md-9">
                             <article className="card mb-4">
                                 <header className="card-header">
-                                    <a href="#" className="float-right"> <i className="fa fa-print"></i> Print</a>
-                                    <strong className="d-inline-block me-3" style={{fontSize:"16px"}}>Order ID: 6123456789</strong>
-                                    <span  style={{fontSize:"16px"}}>Ngày đặt : 16 December 2018</span>
+                                    {/* <a href="#" className="float-right"> <i className="fa fa-print"></i> Print</a> */}
+                                    <strong className="d-inline-block me-3" style={{ fontSize: "16px" }}>Order ID: 6123456789</strong>
+                                    <span style={{ fontSize: "16px" }}>Ngày đặt : 16/9/2023</span>
                                 </header>
                                 <div className="card-body">
                                     <div className="row">
@@ -45,13 +45,12 @@ function Profile() {
                                                 <i className="fab fa-lg fa-cc-visa"></i>
                                                 Visa  **** 4216
                                             </span>
-                                            <p>Subtotal: $356 <br />
-                                                Shipping fee:  $56 <br />
-                                                <span className="b">Total:  $456 </span>
-                                            </p>
+                                            <p>Tạm tính :  356 </p>
+                                            <p>Phí giao hàng :  56</p>
+                                            <span className="b">Tổng cộng :  456 </span>
                                         </div>
-                                    </div> {/*-- row.// -*/}
-                                </div> {/*-- card-body .// -*/}
+                                    </div>
+                                </div>
                                 <div className="table-responsive">
                                     <table className="table table-hover">
                                         <tbody><tr>
@@ -59,10 +58,10 @@ function Profile() {
                                                 <img src={require("../../../assets/images/products/banh-bong-lan-cuon.jpg")} className="img-xs border" />
                                             </td>
                                             <td>
-                                                <p className="title mb-0">Product name goes here </p>
-                                                <var className="price text-muted">USD 145</var>
+                                                <p className="title mb-0">Bánh bông lan</p>
+                                                <var className="price text-muted">145.000 đ</var>
                                             </td>
-                                            <td> Seller <br /> Nike clothing </td>
+                                            <td> </td>
                                             <td width="250"> <a href="#" className="btn btn-outline-primary me-2">Track order</a>
                                                 <div className="dropdown d-inline-block">
                                                     <a href="#" data-toggle="dropdown" className="dropdown-toggle btn btn-outline-secondary">More</a>
@@ -70,7 +69,7 @@ function Profile() {
                                                         <a href="#" className="dropdown-item">Return</a>
                                                         <a href="#" className="dropdown-item">Cancel order</a>
                                                     </div>
-                                                </div> {/*-- dropdown.// -*/}
+                                                </div>
                                             </td>
                                         </tr>
                                             <tr>
@@ -78,10 +77,10 @@ function Profile() {
                                                     <img src={require("../../../assets/images/products/banh-donut.jpg")} className="img-xs border" />
                                                 </td>
                                                 <td>
-                                                    <p className="title mb-0">Another name goes here </p>
-                                                    <var className="price text-muted">USD 15</var>
+                                                    <p className="title mb-0">Bánh Donut </p>
+                                                    <var className="price text-muted">15.000 đ</var>
                                                 </td>
-                                                <td> Seller <br /> ABC shop </td>
+                                                <td> </td>
                                                 <td>
                                                     <a href="#" className="btn btn-outline-primary me-2">Track order</a>
                                                     <div className="dropdown d-inline-block">
@@ -90,7 +89,7 @@ function Profile() {
                                                             <a href="#" className="dropdown-item">Return</a>
                                                             <a href="#" className="dropdown-item">Cancel order</a>
                                                         </div>
-                                                    </div> {/*-- dropdown.// -*/}
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -98,10 +97,10 @@ function Profile() {
                                                     <img src={require("../../../assets/images/products/banh-my-croissant-socola.jpg")} className="img-xs border" />
                                                 </td>
                                                 <td>
-                                                    <p className="title mb-0">The name of the product  goes here </p>
-                                                    <var className="price text-muted">USD 145</var>
+                                                    <p className="title mb-0">Bánh mì croissant </p>
+                                                    <var className="price text-muted">145.000 đ</var>
                                                 </td>
-                                                <td> Seller <br /> Wallmart </td>
+                                                <td> </td>
                                                 <td> <a href="#" className="btn btn-outline-primary me-2">Track order</a>
                                                     <div className="dropdown d-inline-block">
                                                         <a href="#" data-toggle="dropdown" className="dropdown-toggle btn btn-outline-secondary">More</a>
@@ -109,91 +108,17 @@ function Profile() {
                                                             <a href="#" className="dropdown-item">Return</a>
                                                             <a href="#" className="dropdown-item">Cancel order</a>
                                                         </div>
-                                                    </div> {/*-- dropdown.// -*/}
-                                                </td>
-                                            </tr>
-                                        </tbody></table>
-                                </div> {/*-- table-responsive .end// -*/}
-                            </article> {/*-- card order-item .// -*/}
-
-                            <article className="card order-item mb-4">
-                                <header className="card-header">
-                                    <a href="#" className="float-right"> <i className="fa fa-print"></i> Print</a>
-                                    <strong className="d-inline-block mr-3">Order ID: 6123456789</strong>
-                                    <span>Order Date: 16 December 2018</span>
-                                </header>
-                                <div className="card-body">
-                                    <div className="row">
-                                        <div className="col-md-8">
-                                            <h6 className="text-muted">Delivery to</h6>
-                                            <p>Michael Jackson <br />
-                                                Phone +1234567890 Email: myname@pixsellz.com <br />
-                                                Location: Home number, Building name, Street 123,  Tashkent, UZB <br />
-                                                P.O. Box: 100123
-                                            </p>
-                                        </div>
-                                        <div className="col-md-4">
-                                            <h6 className="text-muted">Payment</h6>
-                                            <span className="text-success">
-                                                <i className="fab fa-lg fa-cc-visa"></i>
-                                                Visa  **** 4216
-                                            </span>
-                                            <p>Subtotal: $356 <br />
-                                                Shipping fee:  $56 <br />
-                                                <span className="b">Total:  $456 </span>
-                                            </p>
-                                        </div>
-                                    </div> {/*-- row.// -*/}
-                                </div> {/*-- card-body .// -*/}
-                                <div className="table-responsive">
-                                    <table className="table table-hover">
-                                        <tbody><tr>
-                                            <td width="65">
-                                                <img src={require("../../../assets/images/products/banh-bong-lan-cuon.jpg")} className="img-xs border" />
-                                            </td>
-                                            <td>
-                                                <p className="title mb-0">Product name goes here </p>
-                                                <var className="price text-muted">USD 145</var>
-                                            </td>
-                                            <td> Seller <br /> Nike clothing </td>
-                                            <td width="250"> <a href="#" className="btn btn-outline-primary me-2">Track order</a>
-                                                <div className="dropdown d-inline-block">
-                                                    <a href="#" data-toggle="dropdown" className="dropdown-toggle btn btn-outline-secondary">More</a>
-                                                    <div className="dropdown-menu dropdown-menu-right">
-                                                        <a href="#" className="dropdown-item">Return</a>
-                                                        <a href="#" className="dropdown-item">Cancel order</a>
                                                     </div>
-                                                </div> {/*-- dropdown.// -*/}
-                                            </td>
-                                        </tr>
-                                            <tr>
-                                                <td>
-                                                    <img src={require("../../../assets/images/products/banh-gato.jpg")} className="img-xs border" />
-                                                </td>
-                                                <td>
-                                                    <p className="title mb-0">Another name goes here </p>
-                                                    <var className="price text-muted">USD 15</var>
-                                                </td>
-                                                <td> Seller <br /> ABC shop </td>
-                                                <td> <a href="#" className="btn btn-outline-primary me-2">Track order</a>
-                                                    <div className="dropdown d-inline-block">
-                                                        <a href="#" data-toggle="dropdown" className="dropdown-toggle btn btn-outline-secondary">More</a>
-                                                        <div className="dropdown-menu dropdown-menu-right">
-                                                            <a href="#" className="dropdown-item">Return</a>
-                                                            <a href="#" className="dropdown-item">Cancel order</a>
-                                                        </div>
-                                                    </div> {/*-- dropdown.// -*/}
                                                 </td>
                                             </tr>
-                                        </tbody></table>
-                                </div> {/*-- table-responsive .end// -*/}
-                            </article> {/*-- card order-item .// -*/}
-
-
-                        </main> {/*-- col.// -*/}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </article>
+                        </main>
                     </div>
 
-                </div> {/*-- container .//  -*/}
+                </div>
             </section>
         </div>
     );

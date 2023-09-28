@@ -5,7 +5,7 @@ function Product_All() {
     return (
         <div className="product-all">
             <div className="container mb-5">
-                <div className="title-proall m-5">
+                <div className="title-proall ">
                     <h3 id="h3-pro" className="text-center">Các Sản Phẩm Của Tr Cake</h3>
                 </div>
                 <div className="content-pro">

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import { BsPencil,BsTrash3 } from "react-icons/bs";
 function Profile_Address() {
 
     return (
@@ -28,36 +28,24 @@ function Profile_Address() {
                         </aside> {/* <!-- col.// -->*/}
                         <main class="col-md-9">
                         
-                            <a href="#" class=" borderbtn btn-light mb-3"><i class="fa fa-plus"></i> Add new address </a>
+                            <a href="#" class=" border border-danger btn btn-light mb-3"><i class="fa fa-plus  text-danger">+  Thêm địa chỉ</i> </a>
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <article class="box mb-4">
-                                        <h6>London, United Kingdom</h6>
-                                        <p>Building: Nestone  Floor: 22, Aprt: 12  </p>
-                                        <a href="#" class="btn btn-light disabled"> <i class="fa fa-check"></i> Default</a> <a href="#" class="btn btn-light"> <i class="fa fa-pen"></i> </a>   <a href="#" class="btn btn-light"> <i class="text-danger fa fa-trash"></i>  </a>
+                                    <article class="box mb-4">                                        
+                                        <h6>Địa chỉ :</h6>
+                                        <p>15A, Tân Hòa 2, Phường Hiệp Phú, Quận 9, Tp Hồ Chí Minh</p>
+                                        <a href="#" class="btn btn-light bg-warning disabled"> <i class="fa fa-check"></i> Mặc định</a> 
+                                        <a href="#" class="btn btn-light ms-2"> <i class="fa fa-pen"><BsPencil/></i> </a>   
+                                        <a href="#" class="btn btn-light ms-2"> <i class="text-danger fa fa-trash"><BsTrash3/></i>  </a>
                                     </article>
-                                </div>  {/* <!-- col.// -->*/}
-                                <div class="col-md-6">
-                                    <article class="box mb-4">
-                                        <h6>Tashkent, Uzbekistan</h6>
-                                        <p>Building one  Floor: 2, Aprt: 32  </p>
-                                        <a href="#" class="btn btn-light">Make default</a> <a href="#" class="btn btn-light"> <i class="fa fa-pen"></i> </a>   <a href="#" class="btn btn-light"> <i class="text-danger fa fa-trash"></i>  </a>
-                                    </article>
-                                </div> {/*  <!-- col.// -->*/}
-                                <div class="col-md-6">
-                                    <article class="box mb-4">
-                                        <h6>Moscow, Russia</h6>
-                                        <p>Lenin street  Building A, Floor: 3, Aprt: 32  </p>
-                                        <a href="#" class="btn btn-light">Make default</a> <a href="#" class="btn btn-light"> <i class="fa fa-pen"></i> </a>   <a href="#" class="btn btn-light"> <i class="text-danger fa fa-trash"></i>  </a>
-                                    </article>
-                                </div>  {/* <!-- col.// -->*/}
-                            </div> {/* <!-- row.// -->*/}
+                                </div>  
+                            </div> 
 
-                        </main> {/* <!-- col.// -->*/}
+                        </main> 
                     </div>
 
-                </div> {/* <!-- container .//  -->*/}
+                </div> 
             </section>
             {/*  <!-- ========================= SECTION CONTENT END// ========================= -->*/}
         </div>

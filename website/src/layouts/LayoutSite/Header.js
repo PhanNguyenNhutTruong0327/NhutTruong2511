@@ -61,7 +61,7 @@ class Header extends Component {
 
                     <div class="container">
 
-                        <Link to="#" class="header-logo">
+                        <Link to="/" class="header-logo">
 
                             <img src={require("../../assets/images/logo/Tr-Cake.jpg")} alt="logo" width={130} height={70} />
 
