@@ -17,3 +17,4 @@
 ### Tuần 4: Giao diện trang home, login, đăng ký, liên hệ.
 ### Tuần 5: Các phần cơ bản còn lại của giao diện tĩnh trang người dùng.
 ### Tuần 6: Tạo csdl và viết chức năng thêm, xóa, sửa, lấy dl các bảng.
+### Tuần 7: Kết nối csdl, đổ dữ liệu động lên trang người dùng.
