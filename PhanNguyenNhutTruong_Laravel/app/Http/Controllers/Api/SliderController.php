@@ -12,7 +12,11 @@ class SliderController extends Controller
         $sliders = Slider::all();
         return response()->json(['success'=>true,'message'=>"Tải dữ liệu thành công",'sliders'=>$sliders],200);
     }
-    
+    public function getSliderMain($position){
+        $sliders = Slider::where('position','=',$position)->get();
+        return response()->json(['success'=>true,'message'=>"Tải dữ liệu thành công",'sliders'=>$sliders],200);
+    }
+
     /*lay bang id -> chi tiet */
     public function show($id){
     $slider = Slider::find($id);
@@ -29,6 +33,8 @@ class SliderController extends Controller
         $slider = new Slider();
         $slider->name = $request->name; 
         $slider->link = $request->link; 
+        $slider->text = $request->text; 
+        $slider->sub_title = $request->sub_title; 
         $files = $request->image;
         if ($files != null) {
             $extension = $files->getClientOriginalExtension();
@@ -53,6 +59,8 @@ class SliderController extends Controller
         $slider = Slider::find($id);
         $slider->name = $request->name; 
         $slider->link = $request->link; 
+        $slider->text = $request->text; 
+        $slider->sub_title = $request->sub_title; 
         $files = $request->image;
         if ($files != null) {
             $extension = $files->getClientOriginalExtension();

@@ -1,7 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./style.css"
+import { useState } from "react";
+import userservices from "../../../services/UserServices";
 
 function Register() {
+    const navigate = useNavigate();
+
+    const [name,setName] = useState('');
+    const [phone,setPhone] = useState('');
+    const [email,setEmail] = useState('');
+    const [password,setPassword] = useState('');
+
+    async function AddUser(event) {
+        event.preventDefault();
+        const user = new FormData();
+        user.append("name", name);
+        user.append("email", email);
+        user.append("phone", phone);
+        user.append("password", password);
+        user.append("roles", "user");
+        user.append("image", "avt.jpg");
+        user.append("status", 1);
+        await userservices.AddUser(user).then(function (result) {
+            if (result.data.success === true) {
+                alert(result.data.message);
+                navigate('/pages/login', { replace: true });
+            }
+            else {
+                alert(result.data.message);
+                navigate('/pages/register', { replace: true });
+            }
+
+        })
+    }
     return (
         <div class="bg-register">
             <div className="container row ">
@@ -12,23 +43,23 @@ function Register() {
                     <div className="from-login">
                         <div class="form-container">
                             <p class="title-register text-white">Chào mừng bạn đến với Tr Cake</p>
-                            <form class="form" method="" action="" onSubmit="">
+                            <form class="form" method="" action="" onSubmit={AddUser}>
                                 <div class="input-group">
                                     <label for="username">Họ Tên :</label>
-                                    <input type="text" name="username" id="username" placeholder="Nhập họ tên..." />
+                                    <input onChange={(e) => setName(e.target.value)} value={name} type="text" name="username" id="username" placeholder="Nhập họ tên..." />
                                 </div>
                                 <div class="input-group">
                                     <label for="email">Email :</label>
-                                    <input type="email" name="email" id="email" placeholder="Nhập email..." />
+                                    <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" name="email" id="email" placeholder="Nhập email..." />
                                 </div>
                                 <div class="input-group">
                                     <label for="phone">Số điện thoại :</label>
-                                    <input type="text" name="phone" id="username" placeholder="Nhập số điện thoại..." />
+                                    <input onChange={(e) => setPhone(e.target.value)} value={phone} type="text" name="phone" id="username" placeholder="Nhập số điện thoại..." />
                                 </div>
 
                                 <div class="input-group">
                                     <label for="password">Mật khẩu :</label>
-                                    <input type="password" name="password" id="password" placeholder="Mật khẩu..." />
+                                    <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" name="password" id="password" placeholder="Mật khẩu..." />
                                     {/* <div class="forgot">
                                     <a rel="noopener noreferrer" href="#"></a>
                                 </div> */}

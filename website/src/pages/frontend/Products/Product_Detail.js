@@ -1,182 +1,29 @@
-import { Link } from "react-router-dom";
-
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import productServices from "../../../services/ProductServices";
+import { urlImage } from "../../../config";
+import Product_Item from "../../../compoment/frontend/Product_Item";
+import { useCart } from "react-use-cart";
 function Product_Detail() {
+    const { slug } = useParams();
+    const {addItem} = useCart();
+    const [product, setProduct] = useState([]);
+    const [product_other, setProductOther] = useState([]);
+    useEffect(function () {
+        (async function () {
+            await productServices.getProductDetail(slug).then(function (result) {
+                setProduct(result.data.product);
+                setProductOther(result.data.product_other);
+            })
+        })()
+    }, [slug]);
+
     return (
-        // <div class="showcase-wrapper has-scrollbar">
 
-        //     <div class="showcase-container">
-
-        //         <div class="showcase">
-
-        //             <div class="showcase-banner">
-        //                 <img src={require("../../../assets/images/products/banh-cuoi.jpg")} alt="shampoo, conditioner & facewash packs" class="showcase-img" />
-        //             </div>
-
-        //             <div class="showcase-content">
-
-        //                 <div class="showcase-rating">
-        //                     <ion-icon name="star"></ion-icon>
-        //                     <ion-icon name="star"></ion-icon>
-        //                     <ion-icon name="star"></ion-icon>
-        //                     <ion-icon name="star-outline"></ion-icon>
-        //                     <ion-icon name="star-outline"></ion-icon>
-        //                 </div>
-
-        //                 <a href="#">
-        //                     <h3 class="showcase-title">shampoo, conditioner & facewash packs</h3>
-        //                 </a>
-
-        //                 <p class="showcase-desc">
-        //                     Lorem ipsum dolor sit amet consectetur Lorem ipsum
-        //                     dolor dolor sit amet consectetur Lorem ipsum dolor
-        //                 </p>
-
-        //                 <div class="price-box">
-        //                     <p class="price">$150.00</p>
-
-        //                     <del>$200.00</del>
-        //                 </div>
-
-        //                 <button class="add-cart-btn">add to cart</button>
-
-        //                 <div class="showcase-status">
-        //                     <div class="wrapper">
-        //                         <p>
-        //                             already sold: <b>20</b>
-        //                         </p>
-
-        //                         <p>
-        //                             available: <b>40</b>
-        //                         </p>
-        //                     </div>
-
-        //                     <div class="showcase-status-bar"></div>
-        //                 </div>
-
-        //                 <div class="countdown-box">
-
-        //                     <p class="countdown-desc">
-        //                         Hurry Up! Offer ends in:
-        //                     </p>
-
-        //                     <div class="countdown">
-
-        //                         <div class="countdown-content">
-
-        //                             <p class="display-number">360</p>
-
-        //                             <p class="display-text">Days</p>
-
-        //                         </div>
-
-        //                         <div class="countdown-content">
-        //                             <p class="display-number">24</p>
-        //                             <p class="display-text">Hours</p>
-        //                         </div>
-
-        //                         <div class="countdown-content">
-        //                             <p class="display-number">59</p>
-        //                             <p class="display-text">Min</p>
-        //                         </div>
-
-        //                         <div class="countdown-content">
-        //                             <p class="display-number">00</p>
-        //                             <p class="display-text">Sec</p>
-        //                         </div>
-
-        //                     </div>
-
-        //                 </div>
-
-        //             </div>
-
-        //         </div>
-
-        //     </div>
-
-        //     <div class="showcase-container">
-
-        //         <div class="showcase">
-
-        //             <div class="showcase-banner">
-        //                 <img src={require("../../../assets/images/products/banh-gato.jpg")} alt="Rose Gold diamonds Earring" class="showcase-img" />
-        //             </div>
-
-        //             <div class="showcase-content">
-
-        //                 <div class="showcase-rating">
-        //                     <ion-icon name="star"></ion-icon>
-        //                     <ion-icon name="star"></ion-icon>
-        //                     <ion-icon name="star"></ion-icon>
-        //                     <ion-icon name="star-outline"></ion-icon>
-        //                     <ion-icon name="star-outline"></ion-icon>
-        //                 </div>
-
-        //                 <h3 class="showcase-title">
-        //                     <a href="#" class="showcase-title">Rose Gold diamonds Earring</a>
-        //                 </h3>
-
-        //                 <p class="showcase-desc">
-        //                     Lorem ipsum dolor sit amet consectetur Lorem ipsum
-        //                     dolor dolor sit amet consectetur Lorem ipsum dolor
-        //                 </p>
-
-        //                 <div class="price-box">
-        //                     <p class="price">$1990.00</p>
-        //                     <del>$2000.00</del>
-        //                 </div>
-
-        //                 <button class="add-cart-btn">add to cart</button>
-
-        //                 <div class="showcase-status">
-        //                     <div class="wrapper">
-        //                         <p> already sold: <b>15</b> </p>
-
-        //                         <p> available: <b>40</b> </p>
-        //                     </div>
-
-        //                     <div class="showcase-status-bar"></div>
-        //                 </div>
-
-        //                 <div class="countdown-box">
-
-        //                     <p class="countdown-desc">Hurry Up! Offer ends in:</p>
-
-        //                     <div class="countdown">
-        //                         <div class="countdown-content">
-        //                             <p class="display-number">360</p>
-        //                             <p class="display-text">Days</p>
-        //                         </div>
-
-        //                         <div class="countdown-content">
-        //                             <p class="display-number">24</p>
-        //                             <p class="display-text">Hours</p>
-        //                         </div>
-
-        //                         <div class="countdown-content">
-        //                             <p class="display-number">59</p>
-        //                             <p class="display-text">Min</p>
-        //                         </div>
-
-        //                         <div class="countdown-content">
-        //                             <p class="display-number">00</p>
-        //                             <p class="display-text">Sec</p>
-        //                         </div>
-        //                     </div>
-
-        //                 </div>
-
-        //             </div>
-
-        //         </div>
-
-        //     </div>
-
-        // </div>
         <div classNameName="">
             <section className="py-3 bg-title-all">
                 <div className="container">
-                    <h3 id="h3-pro" style={{fontSize:"25px"}}> Chi tiết sản phẩm</h3>
+                    <h3 id="h3-pro" style={{ fontSize: "25px" }}> Chi tiết sản phẩm</h3>
                 </div>
             </section>
 
@@ -190,21 +37,21 @@ function Product_Detail() {
                             <div className="card">
                                 <article className="gallery-wrap">
                                     <div className="img-big-wrap">
-                                        <div> <Link href="#"><img src={require("../../../assets/images/products/banh-bong-lan-cha-bong.jpg")} /></Link></div>
-                                    </div> {/*<!-- slider-product.// --> */}
+                                        <div> <Link href="#"><img src={urlImage + 'Product/' + product.image} style={{ width: "100%" }} /></Link></div>
+                                    </div>
                                     <div className="thumbs-wrap">
-                                        <a href="#" className="item-thumb"> <img src={require("../../../assets/images/products/banh-bong-lan-cha-bong.jpg")} /></a>
-                                        <a href="#" className="item-thumb"> <img src={require("../../../assets/images/products/banh-bong-lan-cha-bong.jpg")} /></a>
-                                        <a href="#" className="item-thumb"> <img src={require("../../../assets/images/products/banh-bong-lan-cha-bong.jpg")} /></a>
-                                        <a href="#" className="item-thumb"> <img src={require("../../../assets/images/products/banh-bong-lan-cha-bong.jpg")} /></a>
-                                    </div> {/*<!-- slider-nav.// -->*/}
-                                </article> {/*<!-- gallery-wrap .end// -->*/}
-                            </div> {/*<!-- card.// -->*/}
+                                        <a href="#" className="item-thumb"> <img src={urlImage + 'Product/' + product.image} style={{ height: "100%", width: "100%" }} /></a>
+                                        <a href="#" className="item-thumb"> <img src={urlImage + 'Product/' + product.image} style={{ height: "100%", width: "100%" }} /></a>
+                                        <a href="#" className="item-thumb"> <img src={urlImage + 'Product/' + product.image} style={{ height: "100%", width: "100%" }} /></a>
+                                        <a href="#" className="item-thumb"> <img src={urlImage + 'Product/' + product.image} style={{ height: "100%", width: "100%" }} /></a>
+                                    </div>
+                                </article>
+                            </div>
                         </aside>
                         <main className="col-md-6">
                             <article className="product-info-aside">
 
-                                <h2 className="title mt-3 fs-5">Hot sale unisex New Design Shoe </h2>
+                                <h2 className="title mt-3 fs-5">{product.name}</h2>
 
                                 <div className="rating-wrap my-3">
                                     <ul className="rating-stars">
@@ -228,16 +75,11 @@ function Product_Detail() {
                                 </div> {/*<!-- rating-wrap.// -->*/}
 
                                 <div className="mb-3">
-                                    <var className="price h4">USD 465,00</var>
-                                    <span className="text-muted ms-1">USD 562.65 incl. VAT</span>
+                                    <var className="price h4">{product.price}.000 đ</var>
+                                    {/* <span className="text-muted ms-1">USD 562.65 incl. VAT</span> */}
                                 </div> {/*<!-- price-detail-wrap .// -->*/}
 
-                                <p style={{ fontSize: "15px" }}>Compact sport shoe for running, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute irure dolor. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat </p>
+                                <p style={{ fontSize: "15px" }}>{product.detail}</p>
 
 
                                 <dl className="row" style={{ fontSize: "15px" }}>
@@ -260,17 +102,19 @@ function Product_Detail() {
                                 <div className="form-row  mt-4 d-flex">
                                     <div className="form-group col-md flex-grow-0 me-4">
                                         <div className="input-group mb-3 input-spinner">
-                                            <div className="input-group-prepend">
-                                                <button className="btn btn-light" type="button" id="button-plus"> + </button>
-                                            </div>
-                                            <input type="text" className="form-control" value="1" style={{ height: "40px" }} />
                                             <div className="input-group-append">
-                                                <button className="btn btn-light" type="button" id="button-minus"> &minus; </button>
+                                                <button className="btn btn-light" type="button" id="button-minus" style={{borderTopRightRadius:"0",borderBottomRightRadius: 0}}> &minus; </button>
                                             </div>
+                                            <input type="text" className="form-control" value="1" style={{height:"42px"}}  />
+                                            <div className="input-group-prepend">
+                                                <button className="btn btn-light" type="button" id="button-plus" style={{borderTopLeftRadius:"0",borderBottomLeftRadius: 0}}> + </button>
+                                            </div>
+
                                         </div>
+                                        
                                     </div>
                                     <div className="form-group col-md">
-                                        <button className="btn" style={{ backgroundColor: "orange" }}>
+                                        <button className="btn" style={{ backgroundColor: "orange" }} onClick={()=>addItem(product)}>
                                             <i className="fas fa-shopping-cart"></i> <span className="text text-white">Add to cart</span>
                                         </button>
                                         <a href="#" className="btn btn-light ms-2   ">
@@ -294,60 +138,9 @@ function Product_Detail() {
                 <div className="item-product-other mt-4 mb-4">
                     <div className="content-pro">
                         <div class="product-grid">
-                            <div class="showcase">
-
-                                <div class="showcase-banner">
-
-                                    <img src={require(`../../../assets/images/products/banh-my-croissant-socola.jpg`)} alt="Bánh" width="300" class="product-img default" />
-                                    <img src={require(`../../../assets/images/products/banh-my-croissant-socola.jpg`)} alt="Bánh" width="300" class="product-img hover" />
-
-                                    {/* <p class="showcase-badge">15%</p> */}
-
-                                    <div class="showcase-actions">
-
-                                        <button class="btn-action">
-                                            <ion-icon name="heart-outline"></ion-icon>
-                                        </button>
-
-                                        <Link to="/pages/san-pham/chi-tiet-san-pham/:slug" class="btn-action">
-                                            <ion-icon name="eye-outline"></ion-icon>
-                                        </Link>
-
-                                        <button class="btn-action">
-                                            <ion-icon name="repeat-outline"></ion-icon>
-                                        </button>
-
-                                        <button class="btn-action">
-                                            <ion-icon name="bag-add-outline"></ion-icon>
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="showcase-content">
-
-                                    <a href="#" class="showcase-category">Bánh mì</a>
-
-                                    <a href="#">
-                                        <h3 class="showcase-title">Bánh mì ngọt</h3>
-                                    </a>
-
-                                    <div class="showcase-rating">
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star"></ion-icon>
-                                        <ion-icon name="star-outline"></ion-icon>
-                                        <ion-icon name="star-outline"></ion-icon>
-                                    </div>
-
-                                    <div class="price-box">
-                                        <p class="price">10.000 đ</p>
-                                        <del>12.000 đ</del>
-                                    </div>
-
-                                </div>
-                            </div>
+                            {product_other.map(function (product, index) {
+                                return (<Product_Item product={product} index={index} />);
+                            })}
 
                         </div>
                     </div>

@@ -1,6 +1,19 @@
 import { Link } from "react-router-dom";
 import "./style.css"
+import { useEffect, useState } from "react";
+import postservices from "../../../services/PostServices";
+import { urlImage } from "../../../config";
+
 function News() {
+    const [posts, setPosts] = useState([]);
+    const [limit, setLimit] = useState(6);
+    useEffect(function () {
+        (async function () {
+            await postservices.getPost_All().then(function (result) {
+                setPosts(result.data.posts)
+            })
+        })();
+    }, []);
     return (
         <section>
             <div className="container mb-3">
@@ -11,68 +24,37 @@ function News() {
                     <div className="col-1"></div>
                     <div className="col-10">
                         <div className="row">
-                            {/* news item */}
-                            <div className="col-md-4 mb-3">
-                                <div className="post-item border">
-                                    <div className="post-image">
-                                        <Link to={"/pages/tin-tuc/chi-tiet-bai-viet"} className="link-chi-tiet"><img style={{ height: "300px", width: "100%" }} src={require("../../../assets/images/post/post1.jpg")} className="img-fluid" alt="tin tuc" /></Link>
-                                    </div>
-                                    <div className="post-name p-2">
-                                        <Link style={{ textDecoration: 'none' }} to="/pages/tin-tuc/chi-tiet-bai-viet"><h2 className="text-center fs-5 text-danger">tieu de</h2></Link>
-                                    </div>
-                                    <div className="PostDetail">
-                                        <div className="row ps-2 fs-6">
-                                            <p>chi tiet</p>
+                            {posts.map(function (post, index) {
+                                return (
+                                    <div className="col-md-4 mb-3" key={index}>
+                                        <div className="post-item border">
+                                            <div className="post-image">
+                                                <Link to={`/pages/tin-tuc/chi-tiet-bai-viet/${post.id}`} className="link-chi-tiet"><img style={{ height: "300px", width: "100%" }} src={urlImage + 'Post/' + post.image} className="img-fluid" alt="tin tuc" /></Link>
+                                            </div>
+                                            <div className="post-name p-2">
+                                                <Link style={{ textDecoration: 'none' }} to={`/pages/tin-tuc/chi-tiet-bai-viet/${post.id}`}><h2 className="text-center fs-5 text-danger">{post.title}</h2></Link>
+                                            </div>
+                                            <div className="PostDetail">
+                                                <div className="row ps-2 fs-6">
+                                                    <p id="text-post">{post.detail}</p>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
 
-                                </div>
-                            </div>
-
-                            <div className="col-md-4 mb-3">
-                                <div className="post-item border">
-                                    <div className="post-image">
-                                        <Link to={"/pages/tin-tuc/chi-tiet-bai-viet"} className="link-chi-tiet"><img style={{ height: "300px", width: "100%" }} src={require("../../../assets/images/post/post1.jpg")} className="img-fluid" alt="tin tuc" /></Link>
-                                    </div>
-                                    <div className="post-name p-2">
-                                        <Link style={{ textDecoration: 'none' }} to="/pages/tin-tuc/chi-tiet-bai-viet"><h2 className="text-center fs-5 text-danger">tieu de</h2></Link>
-                                    </div>
-                                    <div className="PostDetail">
-                                        <div className="row ps-2 fs-6">
-                                            <p>chi tiet</p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div className="col-md-4 mb-3">
-                                <div className="post-item border">
-                                    <div className="post-image">
-                                        <Link to={"/pages/tin-tuc/chi-tiet-bai-viet"} className="link-chi-tiet"><img style={{ height: "300px", width: "100%" }} src={require("../../../assets/images/post/post1.jpg")} className="img-fluid" alt="tin tuc" /></Link>
-                                    </div>
-                                    <div className="post-name p-2">
-                                        <Link style={{ textDecoration: 'none' }} to="/pages/tin-tuc/chi-tiet-bai-viet"><h2 className="text-center fs-5 text-danger">tieu de</h2></Link>
-                                    </div>
-                                    <div className="PostDetail">
-                                        <div className="row ps-2 fs-6">
-                                            <p>chi tiet</p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
+                                );
+                            })}
 
 
-                            {/*  */}
 
                         </div>
                     </div>
                     <div className="col-1"></div>
                 </div>
                 <div className="row">
-                    <div className="col-12 text-center">
-                        <button className="btn btn-success" >Xem thêm</button>
+                    <div className="col-12 text-center mt-4">
+                        <button className="btn btn-success" onClick={() => setLimit(limit + 3)}>Xem thêm</button>
                     </div>
                 </div>
             </div>

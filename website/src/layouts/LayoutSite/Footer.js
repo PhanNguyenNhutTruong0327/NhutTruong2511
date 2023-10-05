@@ -47,19 +47,19 @@ class Footer extends Component {
                             </li>
 
                             <li class="footer-nav-item">
-                                <Link to="/pages/policy/chinh-sach-doi-tra" class="footer-nav-link">Chính sách đổi trả</Link>
+                                <Link to="/pages/chinh-sach-doi-tra" class="footer-nav-link">Chính sách đổi trả</Link>
                             </li>
 
                             <li class="footer-nav-item">
-                                <Link to="/pages/policy/an-toan-thuc-pham" class="footer-nav-link">Chính sách an toàn thực phẩm</Link>
+                                <Link to="/pages/an-toan-thuc-pham" class="footer-nav-link">Chính sách an toàn thực phẩm</Link>
                             </li>
 
                             <li class="footer-nav-item">
-                                <Link to="/pages/policy/chinh-sach-van-chuyen" class="footer-nav-link">Chính sách vận chuyển</Link>
+                                <Link to="/pages/chinh-sach-van-chuyen" class="footer-nav-link">Chính sách vận chuyển</Link>
                             </li>
 
                             <li class="footer-nav-item">
-                                <Link to="/pages/policy/chinh-sach-bao-mat" class="footer-nav-link">Chính sách bảo mật</Link>
+                                <Link to="/pages/chinh-sach-bao-mat" class="footer-nav-link">Chính sách bảo mật</Link>
                             </li>
 
 

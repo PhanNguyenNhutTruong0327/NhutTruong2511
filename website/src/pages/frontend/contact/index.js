@@ -1,6 +1,39 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./style.css"
+import { useState } from "react";
+import contactservices from "../../../services/ContactServices";
 function Contact() {
+    const navigate = useNavigate();
+
+    const [name,setName] = useState('');
+    const [email,setEmail] = useState('');
+    const [phone,setPhone] = useState('');
+    const [title,setTitle] = useState('');
+    const [content,setContent] = useState('');
+
+    async function AddContact(event) {
+        event.preventDefault();
+        const contact = new FormData();
+        contact.append("name", name);
+        contact.append("email", email);
+        contact.append("phone", phone);
+        contact.append("title", title);
+        contact.append("replay_id", 0);
+        contact.append("content", content);
+        contact.append("status", 1);
+        await contactservices.AddContact(contact).then(function (result) {
+            if (result.data.success === true) {
+                alert(result.data.message);
+                navigate('/', { replace: true });
+            }
+            else {
+                alert(result.data.message);
+                navigate('/pages/lien-he', { replace: true });
+            }
+
+        })
+    }
+
     return (
         <div class="">
             <div class="contact mb-3">
@@ -22,26 +55,26 @@ function Contact() {
                     <div class="col-7">
                         <div class="form-contact">
                             <div className="form-contact mt-2 mb-4">
-                                <form method="" action="" onSubmit="">
+                                <form method="" action="" onSubmit={AddContact}>
                                     <div class="form-group-contact">
                                         <label for="Name" className="mb-2 mt-2">Tên:</label>
-                                        <input type="text" value="" class="form-control" id="name" placeholder="Nhập tên..." />
+                                        <input type="text" onChange={(e) => setName(e.target.value)} value={name} class="form-control" id="name" placeholder="Nhập tên..." />
                                     </div>
                                     <div class="form-group-contact">
                                         <label for="Email" className="mb-2 mt-2" >Email:</label>
-                                        <input value="" type="email" class="form-control" id="email" placeholder="Nhập email..." />
+                                        <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" class="form-control" id="email" placeholder="Nhập email..." />
                                     </div>
                                     <div class="form-group-contact">
                                         <label for="phone" className="mb-2 mt-2" >Số điện thoại:</label>
-                                        <input type="text" value="" class="form-control" id="phone" placeholder="Nhập số điện thoại..." />
+                                        <input type="text" onChange={(e) => setPhone(e.target.value)} value={phone} class="form-control" id="phone" placeholder="Nhập số điện thoại..." />
                                     </div>
                                     <div class="form-group-contact">
                                         <label for="title" className="mb-2 mt-2">Tiêu đề:</label>
-                                        <input type="text" value="" class="form-control" id="title" placeholder="Nhập tiêu đề..." />
+                                        <input type="text" onChange={(e) => setTitle(e.target.value)} value={title} class="form-control" id="title" placeholder="Nhập tiêu đề..." />
                                     </div>
                                     <div class="form-group-contact mb-2">
                                         <label for="content" className="mb-2 mt-2">Nội dung:</label>
-                                        <textarea class="form-control" value="" id="content" placeholder="Nhập nội dung..." />
+                                        <textarea class="form-control" onChange={(e) => setContent(e.target.value)} value={content} id="content" placeholder="Nhập nội dung..." />
                                     </div>
                                     <button type="submit" class="btn btn-submit">Gửi liên hệ</button>
                                 </form>

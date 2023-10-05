@@ -73,4 +73,13 @@ class TopicController extends Controller
         return response()->json(['success' => true, 'message' => 'Xóa thành công', 'topic' => null],200);
     }
 
+    // list topic
+    public function list_topic($parent_id){
+        $arg = [
+            ['parent_id','=', $parent_id],
+            ['status','=',1]
+        ];
+        $topics = Topic::where($arg)->get();
+        return response()->json(['success'=>true,'message'=>"Tải dữ liệu thành công",'topics'=>$topics],200);
+    }
 }

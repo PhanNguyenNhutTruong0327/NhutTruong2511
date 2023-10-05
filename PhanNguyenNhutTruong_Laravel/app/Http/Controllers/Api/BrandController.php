@@ -10,8 +10,13 @@ use Illuminate\Support\Str;
 class BrandController extends Controller
 {
      /*lay danh sach thuong hieu*/
-     public function index(){
-        $brands = Brand::all();
+     public function index($status = null){
+        if($status == null){
+            $brands = Brand::all();
+        }
+        else{
+            $brands = Brand::where('status',$status)->get();
+        }
         return response()->json(['success'=>true,'message'=>"Tải dữ liệu thành công",'brands'=>$brands],200);
     }
 
@@ -92,6 +97,7 @@ class BrandController extends Controller
         return response()->json(['success' => true, 'message' => 'Xóa thành công', 'brand' => null],200);
     }
 
-
+        
+    
 
 }

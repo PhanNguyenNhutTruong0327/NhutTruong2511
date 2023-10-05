@@ -93,4 +93,14 @@ class CategoryController extends Controller
             return response()->json(['success'=>true,'message'=>"Xóa dữ liệu thành công"],200);
         }
     }
+
+    // lay cat 
+    public function category_list($parent_id = 0,$limit){
+        $args = [
+            ['parent_id','=',$parent_id],
+            ['status','=',1]
+        ];
+        $categories = Category::where($args)->orderBy('sort_order','ASC')->limit($limit)->get();
+        return response()->json( ['success' => true,'message' => 'Tải dữ liệu thành công', 'categories' => $categories],200);
+    }
 }

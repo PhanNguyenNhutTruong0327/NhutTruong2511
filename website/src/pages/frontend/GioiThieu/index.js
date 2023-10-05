@@ -1,10 +1,22 @@
- import "./style.css"
+ import { useEffect, useState } from "react";
+import "./style.css"
+import postservices from "../../../services/PostServices";
 function GioiThieu() {
+    const [GioiThieu,setGioiThieu] = useState([]);
+    useEffect(function(){
+        (async function(){
+            await postservices.getPage().then(function(result){
+                setGioiThieu(result.data.post);
+            })
+        })();
+    },[]);
+
     return (
         <div className="gioi-thieu">
             <div className="container">
                 <h3 id="title-gt" className="text-center">Giới thiệu</h3>
                 <div className="content-gt">
+
                     <div className="content-item">
                         <h6 className="title-item fs-5">Câu chuyện thương hiệu</h6>
                         <div className="row mt-3">

@@ -42,7 +42,7 @@ class ContactController extends Controller
 /* add form frontend*/
     public function addcontact(Request $request){
         $contact = new Contact();
-        $contact->user_id = $request->user_id;
+        $contact->user_id = 1;
         $contact->name = $request->name; 
         $contact->email = $request->email; 
         $contact->phone = $request->phone; 

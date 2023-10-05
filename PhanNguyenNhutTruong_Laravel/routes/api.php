@@ -26,7 +26,7 @@ use App\Http\Controllers\Api\UserController;
 */
 
 Route::prefix('brand')->group(function(){
-    Route::get('index',[BrandController::class,'index']);
+    Route::get('index/{status?}',[BrandController::class,'index']);
     Route::get('show/{id}',[BrandController::class,'show']);
     Route::post('store',[BrandController::class,'store']);
     Route::post('update/{id}',[BrandController::class,'update']);
@@ -39,14 +39,28 @@ Route::prefix('category')->group(function(){
     Route::post('store',[CategoryController::class,'store']);
     Route::post('update/{id}',[CategoryController::class,'update']);
     Route::delete('destroy/{id}', [CategoryController::class, 'destroy']);
+
+    Route::get('category_list/{parent_id?}/{limit?}', [CategoryController::class, 'category_list']);
+
 });
 
 Route::prefix('product')->group(function(){
-    Route::get('index',[ProductController::class,'index']);
+    Route::get('index/{status?}',[ProductController::class,'index']);
+    Route::get('ProductNew/{sale}/{limit}',[ProductController::class,'ProductNew']);
     Route::get('show/{id}',[ProductController::class,'show']);
     Route::post('store',[ProductController::class,'store']);
     Route::post('update/{id}',[ProductController::class,'update']);
     Route::delete('destroy/{id}', [ProductController::class, 'destroy']);
+
+    Route::get('product_brand/{brand_id}/{limit}', [ProductController::class, 'product_brand']);
+    Route::get('product_category/{category_id}/{limit}',[ProductController::class,'product_category']);
+    Route::get('product_home/{category_id?}/{limit?}/{orderby?}', [ProductController::class, 'product_home']);
+    Route::get('product_detail/{slug}', [ProductController::class, 'product_detail']);
+    Route::get('search_product/{key}/{limit}', [ProductController::class, 'search_product']);
+    Route::get('product_all/{limit}/{page?}', [ProductController::class, 'getProductAll']);
+
+
+
 });
 
 
@@ -65,7 +79,7 @@ Route::prefix('menu')->group(function(){
     Route::post('store',[MenuController::class,'store']);
     Route::post('update/{id}',[MenuController::class,'update']);
     Route::delete('destroy/{id}', [MenuController::class, 'destroy']);
-    Route::get('menu_list/{position}/{parent_id}', [MenuController::class, 'menu_list']);
+    Route::get('getByParentId/{position}/{parent_id}', [MenuController::class, 'getByParentId']);
 });
 
 Route::prefix('order')->group(function(){
@@ -82,11 +96,18 @@ Route::prefix('post')->group(function(){
     Route::post('store',[PostController::class,'store']);
     Route::post('update/{id}',[PostController::class,'update']);
     Route::delete('destroy/{id}', [PostController::class, 'destroy']);
+
+    // frontend
+    Route::get('post_all_fe',[PostController::class,'getPostFE']);
+    Route::get('post_detail/{slug}',[PostController::class,'post_detail']);
+    Route::get('post_topic/{topicid}/{limit}',[PostController::class,'post_topic']);
+
 });
 
 
 Route::prefix('slider')->group(function(){
     Route::get('index',[SliderController::class,'index']);
+    Route::get('getSliderMain/{position}',[SliderController::class,'getSliderMain']);
     Route::get('show/{id}',[SliderController::class,'show']);
     Route::post('store',[SliderController::class,'store']);
     Route::post('update/{id}',[SliderController::class,'update']);
@@ -100,6 +121,9 @@ Route::prefix('topic')->group(function(){
     Route::post('store',[TopicController::class,'store']);
     Route::post('update/{id}',[TopicController::class,'update']);
     Route::delete('destroy/{id}', [TopicController::class, 'destroy']);
+
+    Route::get('list_topic/{parent_id}', [TopicController::class, 'list_topic']);
+
 });
 
 
@@ -110,6 +134,10 @@ Route::prefix('user')->group(function(){
     Route::post('store',[UserController::class,'store']);
     Route::post('update/{id}',[UserController::class,'update']);
     Route::delete('destroy/{id}', [UserController::class, 'destroy']);
+
+    Route::post('adduser', [UserController::class, 'AddUser']);
+    Route::post('login', [UserController::class, 'Login']);
+
 });
 
 

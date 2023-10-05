@@ -1,6 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
+import { useState } from "react";
+import userservices from "../../../services/UserServices";
 function Login() {
+    const navigate = useNavigate();
+
+    const [email,setEmail] = useState('');
+    const [password,setPassword] = useState('');
+
+    async function Login(event) {
+        event.preventDefault();
+        const user = new FormData();
+        user.append("email", email);
+        user.append("password", password);
+
+        await userservices.Login(user).then(function (result) {
+            if (result.data.success === true) {
+                alert(result.data.message);
+                navigate('/', { replace: true });
+            }
+            else {
+                alert(result.data.message);
+                navigate('/pages/login', { replace: true });
+            }
+
+        })
+    }
     return (
         <div className="bg-login">
             <div className="container row ">
@@ -12,14 +37,14 @@ function Login() {
 
                         <div class="form-container">
                             <p class="title-login text-white">Đăng nhập</p>
-                            <form class="form" method="" action="" onSubmit="">
+                            <form class="form" method="" action="" onSubmit={Login}>
                                 <div class="input-group">
                                     <label for="email">Email :</label>
-                                    <input type="email" name="email" id="email" placeholder="Nhập email..." />
+                                    <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" name="email" id="email" placeholder="Nhập email..." />
                                 </div>
                                 <div class="input-group">
                                     <label for="password">Mật khẩu :</label>
-                                    <input type="password" name="password" id="password" placeholder="Nhập mật khẩu..." />
+                                    <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" name="password" id="password" placeholder="Nhập mật khẩu..." />
                                     <div class="forgot">
                                         <a rel="noopener noreferrer" href="#">Quên mật khẩu ?</a>
                                     </div>

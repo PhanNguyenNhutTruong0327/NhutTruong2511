@@ -1,14 +1,22 @@
-import New_Arrivals from "./Pro_Show1";
-import Trending from "./Pro_Show3";
 import New_Products from "./New_Products";
-import Top_Rated from "./Pro_Show2";
 import Best_Sallers from "./Best_Sallers";
 import Category from "../Category";
-
+import Sale_Products from "./Sale_Products";
+import { useEffect, useState } from "react";
+import categoryservice from "../../../../services/CategoryServices";
+import Product_Show_Home from "../../../../compoment/frontend/Product_Show_Home";
 
 
 
 function Product() {
+    const [categories, getCategories] = useState([]);
+    useEffect(function () {
+        (async function () {
+            await categoryservice.getListCategories(0,3).then(function (result) {
+                getCategories(result.data.categories)
+            })
+        })();
+    }, []);
 
     return (
         <div class="product-container">
@@ -22,7 +30,7 @@ function Product() {
 
                 <div class="sidebar  has-scrollbar" data-mobile-menu>
 
-                    <Category/>
+                    <Category />
                     <Best_Sallers />
 
                 </div>
@@ -36,22 +44,17 @@ function Product() {
 --> */}
 
                     <div class="product-minimal">
-
-                        <New_Arrivals />
-                        <Trending />
-                        <Top_Rated />
-
-
-
+                    {categories.map(function (cat,index) {
+                    return (
+                        <Product_Show_Home key={index} cat={cat} />   
+                    );
+                })}
 
 
                     </div>
 
 
 
-                    {/* <!--
-            - PRODUCT FEATURED
---> */}
 
                     <div class="product-featured">
 
@@ -103,6 +106,7 @@ function Product() {
             - PRODUCT GRID
 --> */}
                     <New_Products />
+                    <Sale_Products />
 
 
                 </div>
